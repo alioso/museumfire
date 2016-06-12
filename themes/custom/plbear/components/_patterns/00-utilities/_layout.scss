@@ -1,0 +1,75 @@
+.element-invisible {
+  @include element-invisible;
+}
+
+.visually-hidden {
+  @include element-invisible;
+}
+
+#skip-link {
+  margin: 0;
+  padding: 0;
+  li {
+    list-style-type: none;
+  }
+}
+
+//*************
+// Left Sidebar
+//*************
+
+.layout-sidebar-first {
+  main {
+    @include breakpoint($breakpoint-medium-width) {
+      @include col(3/4);
+      @include shift(1/4);
+    }
+  }
+  .site-sidebars {
+    @include breakpoint($breakpoint-medium-width) {
+      @include col(1/4);
+      @include shift(-3/4);
+    }
+  }
+}
+
+//**************
+// Right Sidebar
+//**************
+
+.layout-sidebar-second {
+  main {
+    @include breakpoint($breakpoint-medium-width) {
+      @include col(3/4);
+    }
+  }
+  .site-sidebars {
+    @include breakpoint($breakpoint-medium-width) {
+      @include col(1/4);
+    }
+  }
+}
+
+//**************
+// Two Sidebars
+//**************
+
+.layout-two-sidebars {
+  main {
+    @include breakpoint($breakpoint-medium-width) {
+      @include col(2/4);
+      @include shift(1/4);
+    }
+  }
+  .sidebar-first {
+    @include breakpoint($breakpoint-medium-width) {
+      @include col(1/4);
+      @include shift(-2/4);
+    }
+  }
+  .sidebar-second {
+    @include breakpoint($breakpoint-medium-width) {
+      @include col(1/4);
+    }
+  }
+}

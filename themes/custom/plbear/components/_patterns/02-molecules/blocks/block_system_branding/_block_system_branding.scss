@@ -5,7 +5,16 @@
   }
 
   &__site-name {
-
+    font-family: $sans;
+    font-size: 4em;
+    text-transform: uppercase;
+    position: fixed;
+    width: 100%;
+    top: 77px;
+    text-align: center;
+    a {
+      color: $white;
+    }
   }
-  
+
 }

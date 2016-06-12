@@ -14,7 +14,7 @@
       "alias": "@plbear.local"
   },
   "browserSync": {
-      "hostname": "plbear.dev",
+      "hostname": "museumfire.dev",
       "port": 3000,
       "openAutomatically": false,
       "reloadDelay": 0,

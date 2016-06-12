@@ -13,10 +13,12 @@ $leading-rem-desktop: $leading-desktop / $base-desktop;
 
 @import 'gutenberg-mixins';
 @import '../breakpoint/stylesheets/breakpoint';
+@import url(https://fonts.googleapis.com/css?family=Teko:300);
 
 /* Font themes
    ========================================================================== */
 
+$sans: 'Teko', sans-serif;
 $font-body: null;
 $font-headings: null;
 

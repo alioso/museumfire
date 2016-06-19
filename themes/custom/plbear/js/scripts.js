@@ -26,7 +26,7 @@
           delta = 5,
           hBar = $('.wrapper--header'),
           hBarHeight = hBar.outerHeight(),
-          nBar = $('.wrapper--navigation');
+          nbar = $('.wrapper--navigation');
 
       var throttledSticky = $.throttle(100, function() {stickyHeader()});
       $(window).on('scroll', throttledSticky);
@@ -36,16 +36,16 @@
         if (Math.abs(lastScrollTop - st) <= delta)
         return;
         if (st > lastScrollTop && st > hBarHeight){
-          nBar
+          hBar
             .removeClass('down top')
             .addClass('up');
         } else if (st + $(window).height() < $(document).height() && st > hBarHeight) {
-          nBar
+          hBar
             .removeClass('up')
             .addClass('down');
         }
         else if (st <= 10) {
-          nBar
+          hBar
             .removeClass('down up')
             .addClass('top');
         }

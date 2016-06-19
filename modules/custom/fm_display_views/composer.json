@@ -1,0 +1,6 @@
+{
+    "name": "drupal/display_mode",
+    "description": "Simple composer.json for the FM display views module.",
+    "type": "drupal-module",
+    "license": "GPL-2.0+"
+}

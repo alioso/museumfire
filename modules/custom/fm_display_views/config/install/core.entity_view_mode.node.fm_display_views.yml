@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - fm_display_views
+id: node.fm_display_views
+label: 'Featured Event'
+targetEntityType: node
+cache: true

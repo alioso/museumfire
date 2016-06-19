@@ -1,0 +1,9 @@
+name: FM display views
+description: Adds custom display views
+package: Custom
+
+type: module
+core: 8.x
+
+dependencies:
+  - ds

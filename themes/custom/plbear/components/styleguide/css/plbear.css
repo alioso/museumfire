@@ -2777,6 +2777,7 @@ details {
   position: fixed;
   width: 100%;
   top: 77px;
+  left: 0;
   text-align: center; }
   .branding__site-name a {
     color: white; }
@@ -2829,7 +2830,9 @@ details {
       text-decoration: none; }
 
 section[id^="container-"] {
-  margin: 0 auto; }
+  margin: 0 auto;
+  max-width: 810px;
+  max-width: 45rem; }
 
 #footer {
   padding: 26px 0px;
@@ -3051,9 +3054,7 @@ section[id^="container-"] {
 @media (min-width: 50em){
   *{
     line-height: 26px;
-    line-height: 1.625rem;
-    max-width: 810px;
-    max-width: 45rem; }
+    line-height: 1.625rem; }
   .layout-sidebar-first main{
     zoom: 1;
     float: left;

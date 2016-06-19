@@ -1,28 +1,16 @@
-shila_theme.xs:
+plbear.small:
   label: XS
-  mediaQuery: 'all and (max-width: 524px)'
+  mediaQuery: 'all and (min-width: 0)'
   weight: 0
-  multipliers:
-    - 1x
-    - 2x
-shila_theme.s:
+plbear.medium:
   label: S
-  mediaQuery: 'all and (min-width: 525px) and (max-width: 800px)'
+  mediaQuery: 'all and (min-width: 400) and (max-width: 800px)'
   weight: 1
-  multipliers:
-    - 1x
-    - 2x
-shila_theme.m:
+plbear.large:
   label: M
-  mediaQuery: 'all and (min-width: 801px) and (max-width: 1024px)'
+  mediaQuery: 'all and (min-width: 801px) and (max-width: 1200px)'
   weight: 2
-  multipliers:
-    - 1x
-    - 2x
-shila_theme.l:
+plbear.full:
   label: L
-  mediaQuery: 'all and (min-width: 1025px)'
+  mediaQuery: 'all and (min-width: 1201px)'
   weight: 3
-  multipliers:
-    - 1x
-    - 2x

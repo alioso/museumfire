@@ -3,3 +3,7 @@ section[id^="container-"] {
   max-width: #{$max-width * $base-desktop + 'px'};
   max-width: #{$max-width + 'rem'};
 }
+
+#container-main {
+  @include margin-bottom(2);
+}

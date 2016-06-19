@@ -1,0 +1,75 @@
+  .event-list {
+
+    // featured
+    .views-element-container {
+      position: relative;
+
+      .views-row {
+        @include padding(0, 0, .8, 0);
+
+        border-bottom: 4px solid $light-blue;
+      }
+    }
+
+    .featured-event-title-group {
+      @include padding(.5, .5);
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      text-align: right;
+
+      * {
+        margin: 0;
+      }
+
+      h2 {
+        margin-top: 0;
+      }
+
+      .field {
+        @include margin-bottom(.5);
+        @include padding(0, .5);
+
+        float: right;
+        clear: both;
+        background: $light-blue;
+
+        &--field_venue {
+          clear: left;
+          @include margin(0, .5, 0, 0);
+        }
+
+        &--field_price {
+          clear: right;
+        }
+
+        &--node_link {
+          padding: 0;
+          background: $blue;
+          transition: background .3s ease-in-out;
+
+          &:hover,
+          &:focus {
+            background: $black;
+          }
+
+          a {
+            @include padding(.2, .5);
+            @include link($white, none, $white, none);
+
+            display: block;
+          }
+
+        }
+
+      }
+    }
+
+
+    // upcoming
+    > .views-row {
+
+    }
+
+  }

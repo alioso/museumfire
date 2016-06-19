@@ -1,0 +1,37 @@
+.page-node-type-event {
+
+  .top-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    background: $light-gray;
+  }
+
+  .field {
+
+    &--field_venue {
+      @include col(1/2, $gutter: 0);
+
+      iframe {
+        width: 100% !important;
+        display: block;
+      }
+
+    }
+
+    &--field_description {
+      @include padding(1, 1);
+      clear: both;
+    }
+  }
+
+  .event-groupe-date {
+    @include col(1/2, $gutter: 0);
+    @include padding(1, 0);
+
+
+  }
+
+}

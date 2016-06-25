@@ -1,0 +1,28 @@
+#block-plbear-footer {
+
+  ul {
+    margin: 0;
+
+    @include breakpoint($breakpoint-small-width) {
+      text-align: right;
+    }
+
+    li {
+      float: left;
+
+      @include breakpoint($breakpoint-small-width) {
+        float: none;
+      }
+
+    }
+
+    li:last-child {
+      margin: 0;
+    }
+
+    a {
+      @include link($white, none, $white, underline);
+    }
+
+  }
+}

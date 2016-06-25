@@ -1,0 +1,17 @@
+#block-footercopy {
+  @include margin-bottom(.5);
+
+  @include breakpoint($breakpoint-small-width) {
+    float: left;
+    margin: 0;
+  }
+
+}
+
+#block-plbear-footer {
+
+  @include breakpoint($breakpoint-small-width) {
+    float: right;
+  }
+
+}

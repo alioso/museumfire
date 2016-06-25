@@ -1,6 +1,16 @@
 #footer {
   @include padding(1, 0);
 
+  background: #dark;
+  overflow: hidden;
+  color: $white;
+  font-size: 90%;
+
+  ul, p {
+    margin: 0;
+  }
+
+
 }
 
 .sticky-footer {

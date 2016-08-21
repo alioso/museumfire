@@ -1,0 +1,23 @@
+.field--field_paypal_local,
+.field--field_paypal_international {
+
+
+  @include margin(1, 1, 1, 0);
+
+  display: inline-block;
+
+  a {
+    @include padding(.5, 1);
+
+    background: #FEDBA8;
+    color: $off-black;
+    border-radius: 6px;
+
+    &:hover, &:focus {
+      background: #FAA421;
+      color: $white;
+    }
+  }
+
+
+}

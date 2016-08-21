@@ -1,0 +1,17 @@
+.field--field_record_audio_files {
+  @include padding(1, 1);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: #eee;
+
+  @include breakpoint($breakpoint-medium-width) {
+    flex-direction: row;
+  }
+
+  .field--field_title {
+    font-family: $sans;
+  }
+}

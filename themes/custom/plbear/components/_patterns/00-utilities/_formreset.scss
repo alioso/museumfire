@@ -77,6 +77,9 @@ fieldset {
 	@include center-layout;
 }
 
+label {
+	font-family: $sans;
+}
 
 datalist {
 	font-family: $form-font-family;

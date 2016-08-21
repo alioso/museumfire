@@ -1,0 +1,15 @@
+.pager {
+
+    .js-pager__items {
+      @include margin(1, 0);
+      padding: 0;
+      list-style-type: none;
+
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__item {
+      //display: inline;
+    }
+}

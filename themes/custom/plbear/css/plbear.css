@@ -136,7 +136,8 @@ th {
 img {
   max-width: 100%;
   display: block;
-  margin: inherit auto; }
+  margin: inherit auto;
+  height: auto; }
 
 /* Configuration
    ========================================================================== */
@@ -2559,6 +2560,9 @@ fieldset {
   display: block;
   margin: auto 0; }
 
+label {
+  font-family: "Teko", sans-serif; }
+
 datalist {
   font-family: inherit, sans-serif;
   font-size: 100%; }
@@ -2723,6 +2727,9 @@ form .description {
 form .form-submit {
   margin: 0; }
 
+a {
+  transition: all .3s ease-in-out; }
+
 .element-invisible {
   position: absolute;
   height: 0;
@@ -2743,6 +2750,37 @@ form .form-submit {
   #skip-link li {
     list-style-type: none; }
 
+.field--field_record_audio_files {
+  padding: 26px 26px;
+  padding: 1.625rem 1.625rem;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  background: #eee; }
+  .field--field_record_audio_files .field--field_title {
+    font-family: "Teko", sans-serif; }
+
+.field--field_paypal_local,
+.field--field_paypal_international {
+  margin: 26px 26px 26px 0px;
+  margin: 1.625rem 1.625rem 1.625rem 0rem;
+  display: inline-block; }
+  .field--field_paypal_local a,
+  .field--field_paypal_international a {
+    padding: 13px 26px;
+    padding: 0.8125rem 1.625rem;
+    background: #FEDBA8;
+    color: #555;
+    border-radius: 6px; }
+    .field--field_paypal_local a:hover, .field--field_paypal_local a:focus,
+    .field--field_paypal_international a:hover,
+    .field--field_paypal_international a:focus {
+      background: #FAA421;
+      color: white; }
+
 details {
   margin-bottom: 26px;
   margin-bottom: 1.625rem; }
@@ -2762,6 +2800,18 @@ details {
     border: 1px solid #f5f5f5;
     border-top: 0; }
 
+#covers {
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: justify;
+      justify-content: space-between; }
+  #covers .field {
+    width: 48%; }
+
 #block-footercopy {
   margin-bottom: 13px;
   margin-bottom: 0.8125rem; }
@@ -2779,7 +2829,9 @@ details {
   left: 0;
   text-align: center; }
   .branding__site-name a {
-    color: white; }
+    color: white;
+    background: url(../images/logo.png) left 2px no-repeat;
+    padding-left: 80px; }
 
 #block-plbear-footer ul {
   margin: 0; }
@@ -2841,6 +2893,16 @@ details {
       color: #728EAD;
       text-decoration: none; }
 
+.pager .js-pager__items {
+  margin: 26px 0px;
+  margin: 1.625rem 0rem;
+  padding: 0;
+  list-style-type: none;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between; }
+
 section[id^="container-"] {
   margin: 0 auto;
   max-width: 810px;
@@ -2890,12 +2952,33 @@ section[id^="container-"] {
   margin-bottom: 52px;
   margin-bottom: 3.25rem;
   overflow: hidden; }
-  .event-list .views-element-container {
+  .event-list .featured-event {
     position: relative; }
-    .event-list .views-element-container .views-row {
+    .event-list .featured-event .views-row {
       padding: 0px 0px 20.8px;
       padding: 0rem 0rem 1.3rem;
       border-bottom: 4px solid #b2c2d3; }
+    .event-list .featured-event .paragraph--type-audio-bundle {
+      padding: 13px 13px;
+      padding: 0.8125rem 0.8125rem;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: column;
+          flex-direction: column;
+      -ms-flex-pack: center;
+          justify-content: center;
+      -ms-flex-align: center;
+          align-items: center;
+      background: #eee; }
+      .event-list .featured-event .paragraph--type-audio-bundle .field--field_title {
+        margin: 0px 13px 0px 0px;
+        margin: 0rem 0.8125rem 0rem 0rem;
+        font-family: "Teko", sans-serif;
+        line-height: 1; }
+      .event-list .featured-event .paragraph--type-audio-bundle .field--field_audio_file_s_ {
+        line-height: 1;
+        margin: 0;
+        padding: 0; }
   .event-list .featured-event-title-group {
     padding: 13px 13px;
     padding: 0.8125rem 0.8125rem;
@@ -2986,6 +3069,18 @@ section[id^="container-"] {
       right: 0;
       position: absolute; }
 
+.view--records {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-direction: column;
+      flex-direction: column; }
+  .view--records .views-row {
+    margin-bottom: 26px;
+    margin-bottom: 1.625rem;
+    width: 32%; }
+
 .wrapper {
   max-width: 100%;
   clear: both;
@@ -2999,6 +3094,8 @@ section[id^="container-"] {
     .wrapper--header section * {
       margin: 0; }
   .wrapper--navigation {
+    background: white; }
+  .wrapper--main {
     background: white; }
   .wrapper--footer {
     border-top: 1px solid #ddd;
@@ -3061,6 +3158,14 @@ section[id^="container-"] {
     clear: both; }
   .page-node-type-event .event-groupe-date:last-child {
     margin-right: 0%; }
+
+.page-node-type-album .field--addtoany_field {
+  padding: 26px 26px;
+  padding: 1.625rem 1.625rem;
+  margin: 26px 0px;
+  margin: 1.625rem 0rem;
+  text-align: center;
+  background: #eee; }
 
 #main {
   margin: 0 auto;
@@ -3370,11 +3475,23 @@ section[id^="container-"] {
     clear: both; }
   .layout-two-sidebars .sidebar-second:last-child{
     margin-right: 0%; }
+  .field--field_record_audio_files{
+    -ms-flex-direction: row;
+    flex-direction: row; }
+  #covers{
+    -ms-flex-direction: row;
+    flex-direction: row; }
   .site-sidebars.sidebar-second{
     padding: 0px 0px 52px 104px;
     padding: 0rem 0rem 3.25rem 6.5rem; }
   .site-sidebars.sidebar-first{
-    padding: 0 50px 20px 0; } }
+    padding: 0 50px 20px 0; }
+  .event-list .featured-event .paragraph--type-audio-bundle{
+    -ms-flex-direction: row;
+    flex-direction: row; }
+  .view--records{
+    -ms-flex-direction: row;
+    flex-direction: row; } }
 @media (min-width: 30em){
   #block-footercopy{
     float: left;

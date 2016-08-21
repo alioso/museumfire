@@ -70,7 +70,7 @@ var handleError = function (task) {
 
 gulp.task('sass', function () {
   gutil.log(gutil.colors.yellow('Compiling the theme CSS!'));
-  return gulp.src('./components/*.scss')
+  return gulp.src('components/*.scss')
     .pipe(cssGlobbing({
       extensions: ['.scss']
     }))
@@ -86,7 +86,7 @@ gulp.task('sass', function () {
 
 gulp.task('panels', function () {
   gutil.log(gutil.colors.yellow('Compiling the panel layouts CSS!'));
-  return gulp.src('./panels-layouts/**/*.scss')
+  return gulp.src('panels-layouts/**/*.scss')
     .pipe(cssGlobbing({
       extensions: ['.scss']
     }))
@@ -109,7 +109,7 @@ gulp.task('scripts', function () {
 
 gulp.task('images', function () {
   gutil.log(gutil.colors.yellow('Crunching images!'));
-  return gulp.src('./images/**/*.{gif,jpg,png}')
+  return gulp.src('images/**/*.{gif,jpg,png}')
     .pipe(imagemin({
       progressive: true,
       svgoPlugins: [{removeViewBox: false}]
@@ -131,11 +131,11 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task('watch', ['browserSync'], function() {
-  gulp.watch("./css/plbear.css");
-  gulp.watch("./components/**/*.scss", ['sass'], ['styleguide']);
-  gulp.watch("./js/*.js", ['scripts']);
-  gulp.watch("./images/**/*.{gif,jpg,png}", ['images']);
-  gulp.watch("./templates/**/*.php");
+  gulp.watch("css/plbear.css");
+  gulp.watch("components/**/*.scss", ['sass'], ['styleguide']);
+  gulp.watch("js/*.js", ['scripts']);
+  gulp.watch("images/**/*.{gif,jpg,png}", ['images']);
+  gulp.watch("templates/**/*.php");
 });
 
 gulp.task('default', ['sass', 'panels', 'watch']);

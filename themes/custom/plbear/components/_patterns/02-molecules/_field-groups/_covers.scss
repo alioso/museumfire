@@ -1,0 +1,15 @@
+#covers {
+  @include margin-bottom(1);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include breakpoint($breakpoint-medium-width) {
+    flex-direction: row;
+  }
+
+  .field {
+    width: 48%;
+  }
+}

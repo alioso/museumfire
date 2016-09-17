@@ -2951,6 +2951,12 @@ section[id^="container-"] {
 .event-list {
   margin-bottom: 52px;
   margin-bottom: 3.25rem;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   overflow: hidden; }
   .event-list .featured-event {
     position: relative; }
@@ -2979,6 +2985,10 @@ section[id^="container-"] {
         line-height: 1;
         margin: 0;
         padding: 0; }
+  .event-list > .views-element-container {
+    margin-bottom: 52px;
+    margin-bottom: 3.25rem;
+    width: 100%; }
   .event-list .featured-event-title-group {
     padding: 13px 13px;
     padding: 0.8125rem 0.8125rem;
@@ -3019,8 +3029,10 @@ section[id^="container-"] {
             text-decoration: underline; }
   .event-list > .views-row {
     margin-bottom: 26px;
-    margin-bottom: 1.625rem;
-    position: relative; }
+    margin-bottom: 1.625rem; }
+    .event-list > .views-row .view-mode-teaser {
+      position: relative;
+      height: 100%; }
     .event-list > .views-row:hover img {
       opacity: .8; }
     .event-list > .views-row img {
@@ -3045,7 +3057,8 @@ section[id^="container-"] {
         float: left;
         clear: both; }
     .event-list > .views-row .field--field_event_image {
-      width: 100%; }
+      width: 100%;
+      height: 100%; }
     .event-list > .views-row .field--node_link a {
       position: absolute;
       top: 0;
@@ -3503,20 +3516,4 @@ section[id^="container-"] {
   #block-plbear-footer ul li{
     float: none; }
   .event-list > .views-row{
-    zoom: 1;
-    float: left;
-    display: inline;
-    clear: none;
-    text-align: inherit;
-    padding-left: 0;
-    padding-right: 0;
-    width: 48%;
-    margin-left: 0%;
-    margin-right: 4%; }
-  .event-list > .views-row:before, .event-list > .views-row:after{
-    content: '';
-    display: table; }
-  .event-list > .views-row:after{
-    clear: both; }
-  .event-list > .views-row:last-child{
-    margin-right: 0%; } }
+    width: 48%; } }

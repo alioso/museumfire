@@ -50,6 +50,11 @@
     @include margin-bottom(2);
 
     width: 100%;
+
+    .views-element-container {
+      @include margin-bottom(2);
+
+    }
   }
 
   .featured-event-title-group {
@@ -174,6 +179,7 @@
         @include margin-bottom(.1);
 
         transition: all .2s ease-in-out;
+
         * {
           transition: all .2s ease-in-out;
         }

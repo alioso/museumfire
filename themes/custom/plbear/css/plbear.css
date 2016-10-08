@@ -2989,6 +2989,9 @@ section[id^="container-"] {
     margin-bottom: 52px;
     margin-bottom: 3.25rem;
     width: 100%; }
+    .event-list > .views-element-container .views-element-container {
+      margin-bottom: 52px;
+      margin-bottom: 3.25rem; }
   .event-list .featured-event-title-group {
     padding: 13px 13px;
     padding: 0.8125rem 0.8125rem;

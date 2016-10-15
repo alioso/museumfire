@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Definition of Drupal\addtoany\Plugin\views\field\NodeAddToAnyShare
- */
-
 namespace Drupal\addtoany\Plugin\views\field;
 
 use Drupal\views\Plugin\views\field\FieldPluginBase;

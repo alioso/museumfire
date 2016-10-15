@@ -14,20 +14,6 @@ addtoany.settings:
     additional_js:
       type: string
       label: 'Additional JS'
-    nodetypes:
-      type: sequence
-      label: 'Node Types'
-      sequence:
-        type: string
-    display_in_teasers:
-      type: boolean
-      label: 'Display in teasers'
-    display_in_nodecont:
-      type: boolean
-      label: 'Display in content section'
-    display_weight:
-      type: integer
-      label: 'Content Weight'
     universal_button:
       type: string
       label: 'Universal Button Type'

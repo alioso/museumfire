@@ -10,18 +10,7 @@ use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Url;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\UrlHelper;
-
-/**
- * Implements hook_permission().
- */
-function addtoany_permission() {
-  return array(
-    'administer addtoany' => array(
-      'title' => t('Administer addtoany'),
-      'description' => t('Perform administration tasks for the AddToAny module.'),
-    ),
-  );
-}
+use Drupal\node\Entity\NodeType;
 
 /**
 * Implements hook_theme().
@@ -37,34 +26,37 @@ function addtoany_theme() {
 }
 
 /**
+ * Implements hook_entity_extra_field_info().
+ */
+function addtoany_entity_extra_field_info() {
+  $extra = array();
+
+  /** @var \Drupal\node\NodeTypeInterface $bundle */
+  foreach (NodeType::loadMultiple() as $bundle) {
+    $extra['node'][$bundle->id()]['display']['addtoany'] = array(
+      'label' => t('AddToAny'),
+      'description' => t('Share buttons by AddToAny'),
+      'weight' => 5,
+      'visible' => FALSE,
+    );
+  }
+
+  return $extra;
+}
+
+/**
  * Implements hook_ENTITY_TYPE_view().
  */
 function addtoany_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode) {
-  $config = \Drupal::config('addtoany.settings');
-  $types = $config->get('nodetypes');
-  $type = $node->getType();
-  $published = $node->isPublished();
-  $teaser = ($view_mode == 'teaser') ? TRUE : FALSE;
-
-  // Display in content section?
-  $show = (!empty($type) && in_array($type, $types, TRUE) && ($published) && ($config->get('display_in_nodecont'))
-     && (
-       (!$teaser) || ($teaser && $config->get('display_in_teasers'))
-    )
-  );
-  $weight = $config->get('display_weight');
-
-  if ($show) {
+  if ($display->getComponent('addtoany') && $node->isPublished()) {
     $build['addtoany'] = array(
       // Not using #markup because data attribute name gets mangled
       // @see https://www.drupal.org/node/2609928
       // '#markup' => addtoany_create_node_buttons($node),
       '#addtoany_html' => addtoany_create_node_buttons($node),
       '#theme' => 'addtoany_standard',
-      '#weight' => $weight,
     );
   }
-
 }
 
 /**
@@ -78,11 +70,23 @@ function addtoany_page_attachments(&$page) {
   /**
    * Initial JS.
    */
+
+  $additional_js = $config->get('additional_js');
+
+  if (\Drupal::moduleHandler()->moduleExists('token')) {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    $data = [];
+    if ($node) {
+       $data = ['node' => $node];
+       $additional_js = \Drupal::token()->replace($additional_js, $data);
+    }
+  }
+
 	$javascript_header = 'window.a2a_config=window.a2a_config||{};'
 	  . 'a2a_config.callbacks=a2a_config.callbacks||[];'
 	  . 'a2a_config.templates=a2a_config.templates||{};'
 		. (($config->get('no_3p')) ? 'a2a_config.no_3p=1;' : '')
-		. $config->get('additional_js');
+		. $additional_js;
 
   // Add AddToAny initial JS config.
   $page['#attached']['html_head'][] = [
@@ -229,12 +233,23 @@ function addtoany_create_buttons($url = NULL, $title = NULL) {
   	$universal_button = '';
 	}
 
-  return ( sprintf('<span class="a2a_kit%s addtoany_list" data-a2a-url="%s" data-a2a-title="%s">%s%s%s</span>',
+  $buttons = sprintf('<span class="a2a_kit%s addtoany_list" data-a2a-url="%s" data-a2a-title="%s">%s%s%s</span>',
     ($buttons_size != '16') ? ' a2a_kit_size_' . $buttons_size : '',
     $link_url,
     $link_name,
     ($universal_button_placement == 'after') ? $additional_html : '',
     $universal_button,
     ($universal_button_placement == 'before') ? $additional_html : ''
-  ));
+  );
+
+  if (\Drupal::moduleHandler()->moduleExists('token')) {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    $data = [];
+    if ($node) {
+       $data = ['node' => $node];
+       $buttons = \Drupal::token()->replace($buttons, $data);
+    }
+  }
+
+  return $buttons;
 }

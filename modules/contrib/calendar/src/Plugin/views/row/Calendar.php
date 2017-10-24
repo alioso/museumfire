@@ -1,21 +1,16 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\calendar\Plugin\views\row\Calendar.
- */
-
 namespace Drupal\calendar\Plugin\views\row;
 
 use Drupal\calendar\CalendarEvent;
 use Drupal\calendar\CalendarHelper;
 use Drupal\calendar\CalendarViewsTrait;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\views\Plugin\views\argument\Date;
 use Drupal\Core\Datetime\DateFormatter;
-use Drupal\Core\Entity\Entity;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\Plugin\views\display\DisplayPluginBase;
 use Drupal\views\Plugin\views\row\RowPluginBase;
@@ -237,7 +232,7 @@ class Calendar extends RowPluginBase {
 
       foreach ($vocabulary_field_options as $field_name => $label) {
         // @todo Provide storage manager via Dependency Injection
-        $field_config = \Drupal::entityManager()->getStorage('field_config')->loadByProperties(['field_name' => $field_name]);
+        $field_config = \Drupal::entityTypeManager()->getStorage('field_config')->loadByProperties(['field_name' => $field_name]);
 
         // @TODO refactor
         reset($field_config);
@@ -268,7 +263,7 @@ class Calendar extends RowPluginBase {
       // @todo Add labels for each Vocabulary.
       $term_colors = $this->options['colors']['calendar_colors_taxonomy'];
       foreach ($vocab_vids as $field_name => $vid) {
-        $vocab = \Drupal::entityManager()->getStorage("taxonomy_term")->loadTree($vid);
+        $vocab = \Drupal::entityTypeManager()->getStorage("taxonomy_term")->loadTree($vid);
         foreach ($vocab as $key => $term) {
           $form['colors']['calendar_colors_taxonomy'][$term->tid] = [
               '#title' => $this->t($term->name),
@@ -335,7 +330,7 @@ class Calendar extends RowPluginBase {
 
       // Node revisions need special loading.
       if (isset($this->view->getBaseTables()['node_revision'])) {
-        $this->entities[$entity->id()] = \Drupal::entityManager()->getStorage('node')->loadRevision($entity->id());
+        $this->entities[$entity->id()] = \Drupal::entityTypeManager()->getStorage('node')->loadRevision($entity->id());
       }
       else {
         $ids[$entity->id()] = $entity->id();
@@ -348,7 +343,7 @@ class Calendar extends RowPluginBase {
     $this->entityType = $table_data['table']['entity type'];
 
     if (!empty($ids)) {
-      $this->entities = \Drupal::entityManager()->getStorage($this->entityType)->loadMultiple($ids);
+      $this->entities = \Drupal::entityTypeManager()->getStorage($this->entityType)->loadMultiple($ids);
     }
 
     // Identify the date argument and fields that apply to this view. Preload
@@ -433,17 +428,26 @@ class Calendar extends RowPluginBase {
       if ($info['is_field']) {
         // Should CalendarHelper::dateViewFields() be returning this already?
         $entity_field_name = str_replace('_value', '', $field_name);
-        $datetime_type = $entity->getFieldDefinition($entity_field_name)->getSetting('datetime_type');
-        $storage_format = $datetime_type == 'date' ? DATETIME_DATE_STORAGE_FORMAT : DATETIME_DATETIME_STORAGE_FORMAT;
+        $field_definition = $entity->getFieldDefinition($entity_field_name);
+
+        if ($field_definition instanceof BaseFieldDefinition) {
+          $storage_format = 'U';
+        }
+        else {
+          $datetime_type = $field_definition->getSetting('datetime_type');
+          if ($datetime_type === DateTimeItem::DATETIME_TYPE_DATE) {
+            $storage_format = DATETIME_DATE_STORAGE_FORMAT;
+          }
+          else {
+            $storage_format = DATETIME_DATETIME_STORAGE_FORMAT;
+          }
+        }
+        $item_start_date = $item_end_date = \DateTime::createFromFormat($storage_format, $row->{$info['query_name']});
+
 //        $db_tz   = date_get_timezone_db($tz_handling, isset($item->$tz_field) ? $item->$tz_field : timezone_name_get($dateInfo->getTimezone()));
 //        $to_zone = date_get_timezone($tz_handling, isset($item->$tz_field)) ? $item->$tz_field : timezone_name_get($dateInfo->getTimezone());
 
-				// set timezone: seems to work to retrieve date in UTC and then convert to user's timezone
-        $timezone = new \DateTimeZone('UTC'); 
-        $item_start_date = \DateTime::createFromFormat($storage_format, $row->{$info['query_name']},$timezone );
-        $item_start_date->setTimezone(new \DateTimeZone(drupal_get_user_timezone()));
-        $item_end_date = \DateTime::createFromFormat($storage_format, $row->{$info['query_name']}, $timezone);
-        $item_end_date->setTimezone(new \DateTimeZone(drupal_get_user_timezone()));
+
 
         // @todo don't hardcode
 //        $granularity = date_granularity_precision($cck_field['settings']['granularity']);
@@ -504,12 +508,12 @@ class Calendar extends RowPluginBase {
 //
 // @see https://www.drupal.org/node/2195739
 // $event->rendered = theme($this->theme_functions(),
-//       array(
+//       [
 //         'view' => $this->view,
 //         'options' => $this->options,
 //         'row' => $row,
 //         'field_alias' => isset($this->field_alias) ? $this->field_alias : '',
-//       ));
+//       ]);
 
       /** @var \Drupal\calendar\CalendarEvent[] $events */
       $events = $this->explode_values($event);
@@ -689,7 +693,7 @@ class Calendar extends RowPluginBase {
     return [
       '#states' => [
         'visible' => [
-          ':input[name="row_options[colors][legend]"]' => array('value' => $mode),
+          ':input[name="row_options[colors][legend]"]' => ['value' => $mode],
         ],
       ],
     ];

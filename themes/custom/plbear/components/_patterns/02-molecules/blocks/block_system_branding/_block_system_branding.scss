@@ -6,16 +6,16 @@
 
   &__site-name {
     font-family: $sans;
-    font-size: 4em;
+    font-size: 3em;
     text-transform: uppercase;
-    position: fixed;
     width: 100%;
-    top: 77px;
+    //top: 77px;
     left: 0;
     text-align: center;
+    line-height: 1;
 
     a {
-      color: $white;
+      color: $black;
       background: url(../images/logo.png) left 2px no-repeat;
       padding-left: 80px;
     }

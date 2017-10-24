@@ -6,9 +6,9 @@
 $edit-mode: true; // [ true / false ] - Enables/disables the grid toggle button.
 
 // Theme / Fonts
-$theme: Merriweather; // [ Merriweather / OpenSans / custom ]
-$custom-font-body: null !default; // [ "Libre Baskerville", Georgia, serif ]
-$custom-font-headings: null !default;
+$theme: custom; // [ Merriweather / OpenSans / custom ]
+$custom-font-body: 'Noto Sans', sans-serif !default; // [ "Libre Baskerville", Georgia, serif ]
+$custom-font-headings: 'Noto Sans', sans-serif !default;
 
 // Paragraph indenting
 $paragraph-indent: false; // [ true / false ]

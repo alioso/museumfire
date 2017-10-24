@@ -1,7 +1,6 @@
 @charset "UTF-8";
 /*! Gutenberg reset — adapted from Normalize */
-@import url(https://fonts.googleapis.com/css?family=Teko:300);
-@import url(https://fonts.googleapis.com/css?family=Merriweather:400,700,400italic);
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans");
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%; }
@@ -155,7 +154,7 @@ img {
 html {
   font-size: 16px;
   font-size: 100%;
-  font-family: Merriweather, Georgia, serif;
+  font-family: "Noto Sans", sans-serif;
   color: #261D19; }
 
 * {
@@ -498,8 +497,7 @@ code {
 :root .fa-rotate-270,
 :root .fa-flip-horizontal,
 :root .fa-flip-vertical {
-  -webkit-filter: none;
-          filter: none; }
+  filter: none; }
 
 .fa-stack {
   position: relative;
@@ -2561,7 +2559,7 @@ fieldset {
   margin: auto 0; }
 
 label {
-  font-family: "Teko", sans-serif; }
+  font-family: "Noto Sans", sans-serif; }
 
 datalist {
   font-family: inherit, sans-serif;
@@ -2761,7 +2759,7 @@ a {
       justify-content: space-between;
   background: #eee; }
   .field--field_record_audio_files .field--field_title {
-    font-family: "Teko", sans-serif; }
+    font-family: "Noto Sans", sans-serif; }
 
 .field--field_paypal_local,
 .field--field_paypal_international {
@@ -2820,16 +2818,15 @@ details {
   min-width: 75px; }
 
 .branding__site-name {
-  font-family: "Teko", sans-serif;
-  font-size: 4em;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 3em;
   text-transform: uppercase;
-  position: fixed;
   width: 100%;
-  top: 77px;
   left: 0;
-  text-align: center; }
+  text-align: center;
+  line-height: 1; }
   .branding__site-name a {
-    color: white;
+    color: #261D19;
     background: url(../images/logo.png) left 2px no-repeat;
     padding-left: 80px; }
 
@@ -2880,7 +2877,8 @@ details {
     margin: 0px 26px 0px 0px;
     margin: 0rem 1.625rem 0rem 0rem;
     list-style-type: none;
-    display: inline; }
+    display: inline;
+    text-transform: uppercase; }
     .nav .menu-item--expanded {
       position: relative; }
       .nav .menu-item--expanded:hover .sub-menu, .nav .menu-item--expanded:focus .sub-menu {
@@ -2942,8 +2940,8 @@ section[id^="container-"] {
   padding: 0px 26px;
   padding: 0rem 1.625rem; }
   .region--header {
-    padding: 52px 0px 52px;
-    padding: 3.25rem 0rem 3.25rem; }
+    padding: 26px 0px;
+    padding: 1.625rem 0rem; }
   .region--navigation {
     padding: 26px 0px 0px;
     padding: 1.625rem 0rem 0rem; }
@@ -2979,7 +2977,7 @@ section[id^="container-"] {
       .event-list .featured-event .paragraph--type-audio-bundle .field--field_title {
         margin: 0px 13px 0px 0px;
         margin: 0rem 0.8125rem 0rem 0rem;
-        font-family: "Teko", sans-serif;
+        font-family: "Noto Sans", sans-serif;
         line-height: 1; }
       .event-list .featured-event .paragraph--type-audio-bundle .field--field_audio_file_s_ {
         line-height: 1;
@@ -3104,15 +3102,20 @@ section[id^="container-"] {
   position: relative;
   overflow: hidden; }
   .wrapper--header {
-    background-color: #261D19;
+    background-color: white;
     margin: 0;
-    z-index: 0; }
+    z-index: 2;
+    position: fixed;
+    width: 100%;
+    box-shadow: 0 4px 4px -2px #999; }
     .wrapper--header section * {
       margin: 0; }
   .wrapper--navigation {
-    background: white; }
+    margin-top: 104px;
+    margin-top: 6.5rem;
+    background: #f2f2f2; }
   .wrapper--main {
-    background: white; }
+    background: #f2f2f2; }
   .wrapper--footer {
     border-top: 1px solid #ddd;
     background-color: #333; }
